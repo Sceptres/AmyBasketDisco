@@ -1,0 +1,17 @@
+#ifndef GLAD_INIT_FAILED_EXCEPTION_CLASS
+
+#define GLAD_INIT_FAILED_EXCEPTION_CLASS
+
+#include <iostream>
+
+/**
+ * A class representing an exception when the glad failed to load
+ */
+class GladInitFailedException : public std::exception {
+    public:
+        const char* what() const noexcept override {
+            return "Failed to initialize GLAD";
+        }
+};
+
+#endif

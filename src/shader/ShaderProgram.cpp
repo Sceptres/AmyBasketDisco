@@ -90,3 +90,8 @@ void ShaderProgram::setBool(const std::string& name, GLboolean value) {
     int loc = glGetUniformLocation(this->id, name.c_str());
     glUniform1i(loc, value);
 }
+
+void ShaderProgram::setInt(const std::string& name, GLint value) {
+    int loc = glGetUniformLocation(this->id, name.c_str());
+    glUniform1i(loc, value);
+}

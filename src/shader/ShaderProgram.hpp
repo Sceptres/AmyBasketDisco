@@ -53,6 +53,14 @@ class ShaderProgram {
          */
         void setBool(const std::string& name, GLboolean value);
 
+        /**
+         * Sets an integer variable in the shader
+         * 
+         * @param[in] name The name of the variable in the shader
+         * @param[in] value The integer value to set the variable to
+         */
+        void setInt(const std::string& name, GLint value);
+
     private:
         GLuint id;
 

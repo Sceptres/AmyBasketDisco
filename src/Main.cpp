@@ -28,7 +28,7 @@ int main() {
 		glfwInit();
 
 		// Create and startup window
-		Window window(512, 512, false, "Facial Expressions");
+		Window window(1024, 576, false, "Facial Expressions");
 		window.Launch();
 
 		// Input handler that processes clicks of registered keys
@@ -41,8 +41,8 @@ int main() {
 		ShaderProgram shaderProgram("resources/shaders/default.vert", "resources/shaders/default.frag");
 
 		// Setup the camera
-		Camera camera(glm::vec3(20, 100, 200), 30.0f, 1.0f, 0.1f, 1000.0f);
-		camera.LookAt(glm::vec3(0, 110, 0));
+		Camera camera(glm::vec3(0, 100, 180), 60.0f, 16.0f/9.0f, 0.1f, 1000.0f);
+		camera.LookAt(glm::vec3(0, 80, 0));
 
 		// Background color of the window
 		Color backgroundColor(0.3, 0.4, 0.5, 1.0f);

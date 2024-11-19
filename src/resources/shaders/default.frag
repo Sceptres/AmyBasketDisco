@@ -2,14 +2,16 @@
 
 in vec3 vecColor;
 in vec3 Normal;
+in vec2 TextCoord;
 
-out vec3 FragColor;
+out vec4 FragColor;
+
+uniform sampler2D Texture;
 
 void main() {
-    if(vecColor == vec3(-1.0, -1.0, -1.0)) {
-        float c = dot(Normal, vec3(0.8,0.7,0.6));
-        FragColor = vec3(c,c,c);
+    if(vecColor == vec3(-1.0, -1.0, -1.0)) { // If the system is not in debug mode, ignore vecColor
+        FragColor = texture(Texture, TextCoord);
     } else {
-        FragColor = vecColor;
+        FragColor = vec4(vecColor, 1.0);
     }
 }

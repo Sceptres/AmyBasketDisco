@@ -1,6 +1,6 @@
 #include "Mesh.hpp"
 
-Mesh::Mesh(const char* source) {
+Mesh::Mesh(const char* source, const char* texture) {
     std::string warn, err;
     bool bTriangulate = true;
 
@@ -43,6 +43,7 @@ Mesh::Mesh(const char* source) {
         for(const auto& face : shape.mesh.indices) {
             unsigned int vid = face.vertex_index;
             unsigned int nid = face.normal_index;
+            unsigned int tid = face.texcoord_index;
 
             // Get vertex coordinates
             GLfloat vertX = this->attrib.vertices[vid*3];
@@ -54,6 +55,10 @@ Mesh::Mesh(const char* source) {
             GLfloat normY = this->attrib.normals[nid*3+1];
             GLfloat normZ = this->attrib.normals[nid*3+2];
 
+            // Get texture coordinates
+            GLfloat textureU = this->attrib.texcoords[tid*2];
+            GLfloat textureV = this->attrib.texcoords[tid*2+1];
+
             // Store vertices and normal together for VBO
             this->meshData.push_back(vertX);
             this->meshData.push_back(vertY);
@@ -61,13 +66,19 @@ Mesh::Mesh(const char* source) {
             this->meshData.push_back(normX);
             this->meshData.push_back(normY);
             this->meshData.push_back(normZ);
+            this->meshData.push_back(textureU);
+            this->meshData.push_back(textureV);
         }
     }
+
+    // Load texture
+    this->texture = new Texture(texture);
 }
 
 Mesh::~Mesh() {
     delete this->vao;
     delete this->vbo;
+    delete this->texture;
 }
 
 void Mesh::GLInit() {
@@ -79,9 +90,10 @@ void Mesh::GLInit() {
     this->vbo = new VBO(this->meshData, this->meshData.size() * sizeof(GLfloat));
 
     // Link VBO to VAO
-    GLuint stride = 6 * sizeof(GLfloat);
+    GLuint stride = 8 * sizeof(GLfloat);
     this->vao->LinkBuffers(0, stride, (void*) 0);
     this->vao->LinkBuffers(1, stride, (void*) (3 * sizeof(GLfloat)));
+    this->vao->LinkBuffers(2, stride, (void*) (6 * sizeof(GLfloat)));
 
     // Unbind both VAO and VBO
     this->vao->Unbind();
@@ -89,14 +101,17 @@ void Mesh::GLInit() {
 }
 
 void Mesh::Bind() {
+    this->texture->Bind();
     this->vao->Bind();
 }
 
 void Mesh::Unbind() {
     this->vao->Unbind();
+    this->texture->Unbind();
 }
 
 void Mesh::Delete() {
+    this->texture->Delete();
     this->vao->Delete();
     this->vbo->Delete();
 }
@@ -110,7 +125,7 @@ GLuint Mesh::getNormalCount() {
 }
 
 GLuint Mesh::getMeshDataSize() {
-    return this->meshData.size() / 6;
+    return this->meshData.size() / 8;
 }
 
 tinyobj::attrib_t& Mesh::getAttrib() {

@@ -46,6 +46,11 @@ class ShaderProgram {
         void setMat4(const std::string& name, glm::mat4 value);
 
         /**
+         * Sets a 3D vector variable in the shader program
+         */
+        void setVec3(const std::string& name, glm::vec3 value);
+
+        /**
          * Sets a bool variable in the vertex shader
          * 
          * @param[in] name The name of the variable in the vertex shader

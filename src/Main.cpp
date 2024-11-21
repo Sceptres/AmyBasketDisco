@@ -32,7 +32,7 @@ int main() {
 		glfwInit();
 
 		// Create and startup window
-		Window window(1024, 576, false, "Facial Expressions");
+		Window window(1024, 576, false, "Amy, Bucket, and Disco");
 		window.Launch();
 
 		// Input handler that processes clicks of registered keys

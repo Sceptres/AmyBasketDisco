@@ -66,7 +66,7 @@ int main() {
 		float kc = 1;
 		float kl = 0.000035;
 		float kq = 0.000044;
-		float cuttof = std::numbers::pi / 6;
+		float cutoff = std::numbers::pi / 6;
 
 		// Spotlight objects
 		SpotLight red(
@@ -77,7 +77,7 @@ int main() {
 			kc, 
 			kl, 
 			kq,
-			cuttof
+			cutoff
 		);
 
 		SpotLight green(
@@ -88,7 +88,7 @@ int main() {
 			kc, 
 			kl, 
 			kq,
-			cuttof
+			cutoff
 		);
 
 		SpotLight blue(
@@ -99,7 +99,7 @@ int main() {
 			kc, 
 			kl, 
 			kq,
-			cuttof
+			cutoff
 		);
 
 		// Setup the camera

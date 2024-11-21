@@ -66,6 +66,14 @@ class ShaderProgram {
          */
         void setInt(const std::string& name, GLint value);
 
+        /**
+         * Sets a float variable in the shader
+         * 
+         * @param[in] name The name of the variable in the shader
+         * @param[in] value The float value to set the variable to
+         */
+        void setFloat(const std::string& name, GLfloat value);
+
     private:
         GLuint id;
 

@@ -25,8 +25,8 @@ SpotLight::SpotLight(
 }
 
 void SpotLight::RotateY(float theta) {
-    this->spotDirRotated.x = sin(theta) * this->spotDir.x;
-    this->spotDirRotated.z = cos(theta) * this->spotDir.z;
+    this->spotDirRotated.x = cos(theta) * this->spotDir.x - sin(theta) * this->spotDir.z;
+    this->spotDirRotated.z = sin(theta) * this->spotDir.x + cos(theta) * this->spotDir.z;
 }
 
 void SpotLight::Apply(ShaderProgram& shaderProgram) const {

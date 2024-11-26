@@ -13,6 +13,7 @@ The app has the following keyboard controls:
 3. Press esc to close the window
 
 Below is the youtube video of the project
+
 [![YouTube](http://i.ytimg.com/vi/lN7RMLmTI94/hqdefault.jpg)](https://www.youtube.com/watch?v=lN7RMLmTI94)
 
 ## Setup
